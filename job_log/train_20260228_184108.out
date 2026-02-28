@@ -1,0 +1,172 @@
+wandb: [wandb.login()] Using explicit session credentials for https://api.wandb.ai.
+wandb: Appending key for api.wandb.ai to your netrc file: /home/ysunem/.netrc
+wandb: Currently logged in as: ysunem (ysunem-hong-kong-university-of-science-and-technology) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run lbisrtx8
+wandb: Tracking run with wandb version 0.25.0
+wandb: Run data is saved locally in /scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_184120-lbisrtx8
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run divine-sunset-13
+wandb: ⭐️ View project at https://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid
+wandb: 🚀 View run at https://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid/runs/lbisrtx8
+run dir: /scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_184120-lbisrtx8/files
+Loading pretrained generator from /scratch/peilab/ysunem/26.2/2.27_CausVid/data/ckpt_ode_pretraining/wan_causal_ode_checkpoint_model_003000/model.pt
+/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:479: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.HYBRID_SHARD since the world size is 1.
+  _init_core_state(
+ cache a block wise causal mask with block size of 3 frames
+BlockMask(shape=(1, 1, 32768, 32768), sparsity=42.52%, 
+(0, 0)
+████░░                                  
+████░░                                  
+████░░░░░░░░                            
+██████████░░                            
+██████████░░                            
+██████████░░░░░░░░                      
+████████████████░░                      
+████████████████░░                      
+████████████████░░░░░░░░                
+██████████████████████░░                
+██████████████████████░░                
+██████████████████████░░░░░░░░          
+████████████████████████████░░          
+████████████████████████████░░          
+████████████████████████████████░░      
+████████████████████████████████░░      
+████████████████████████████████░░░░░░░░
+████████████████████████████████████████
+████████████████████████████████████████
+████████████████████████████████████████
+)
+Traceback (most recent call last):
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 348, in <module>
+    main()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 342, in main
+    trainer.train()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 301, in train
+    self.train_one_step()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 226, in train_one_step
+    generator_loss.backward()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_tensor.py", line 630, in backward
+    torch.autograd.backward(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/function.py", line 317, in apply
+    return user_fn(self, *args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2338, in backward
+    return impl_fn()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2324, in impl_fn
+    out = CompiledFunction._backward_impl(ctx, all_args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2494, in _backward_impl
+    out = call_func_at_runtime_with_args(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/utils.py", line 134, in call_func_at_runtime_with_args
+    out = normalize_as_list(f(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/output_code.py", line 638, in __call__
+    return self.current_callable(inputs)
+  File "/tmp/torchinductor_ysunem/om/com2jr6hkfpwbgjalq54dnswsucppit6bpslii5v6bjxraiwxbbm.py", line 971, in call
+    (buf3, buf4, buf5) = self.partitions[0](partition0_args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/compile_fx.py", line 1843, in run
+    return compiled_fn(new_inputs)  # type: ignore[arg-type]
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 388, in deferred_cudagraphify
+    return fn(inputs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/utils.py", line 3220, in run
+    out = model(new_inputs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 2033, in run
+    out = self._run(new_inputs, function_id)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 2150, in _run
+    status, status_logger = child.check_invariants(new_inputs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 1774, in check_invariants
+    torch._check(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/__init__.py", line 1732, in _check
+    _check_with(RuntimeError, cond, message)  # pyrefly: ignore [bad-argument-type]
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/__init__.py", line 1714, in _check_with
+    raise error_type(message_evaluated)
+RuntimeError: TODO: graph recording observed an input tensor deallocate during graph  recording that did not occur during replay. Please file an issue.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 348, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 342, in main
+[rank0]:     trainer.train()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 301, in train
+[rank0]:     self.train_one_step()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 226, in train_one_step
+[rank0]:     generator_loss.backward()
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_tensor.py", line 630, in backward
+[rank0]:     torch.autograd.backward(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/__init__.py", line 364, in backward
+[rank0]:     _engine_run_backward(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/function.py", line 317, in apply
+[rank0]:     return user_fn(self, *args)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2338, in backward
+[rank0]:     return impl_fn()
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2324, in impl_fn
+[rank0]:     out = CompiledFunction._backward_impl(ctx, all_args)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/runtime_wrappers.py", line 2494, in _backward_impl
+[rank0]:     out = call_func_at_runtime_with_args(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_functorch/_aot_autograd/utils.py", line 134, in call_func_at_runtime_with_args
+[rank0]:     out = normalize_as_list(f(args))
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/output_code.py", line 638, in __call__
+[rank0]:     return self.current_callable(inputs)
+[rank0]:   File "/tmp/torchinductor_ysunem/om/com2jr6hkfpwbgjalq54dnswsucppit6bpslii5v6bjxraiwxbbm.py", line 971, in call
+[rank0]:     (buf3, buf4, buf5) = self.partitions[0](partition0_args)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/compile_fx.py", line 1843, in run
+[rank0]:     return compiled_fn(new_inputs)  # type: ignore[arg-type]
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 388, in deferred_cudagraphify
+[rank0]:     return fn(inputs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/utils.py", line 3220, in run
+[rank0]:     out = model(new_inputs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 2033, in run
+[rank0]:     out = self._run(new_inputs, function_id)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 2150, in _run
+[rank0]:     status, status_logger = child.check_invariants(new_inputs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_inductor/cudagraph_trees.py", line 1774, in check_invariants
+[rank0]:     torch._check(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/__init__.py", line 1732, in _check
+[rank0]:     _check_with(RuntimeError, cond, message)  # pyrefly: ignore [bad-argument-type]
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/__init__.py", line 1714, in _check_with
+[rank0]:     raise error_type(message_evaluated)
+[rank0]: RuntimeError: TODO: graph recording observed an input tensor deallocate during graph  recording that did not occur during replay. Please file an issue.
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mdivine-sunset-13[0m at: [34mhttps://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid/runs/lbisrtx8[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_184120-lbisrtx8/logs[0m
+[rank0]:[W228 18:42:21.317880435 ProcessGroupNCCL.cpp:1553] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0228 18:42:23.358000 3728895 site-packages/torch/distributed/elastic/multiprocessing/api.py:984] failed (exitcode: 1) local_rank: 0 (pid: 3728941) of binary: /home/ysunem/miniconda3/envs/causvid/bin/python
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+causvid/train_distillation.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-28_18:42:23
+  host      : dgx-43.cm.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3728941)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,289 @@
+wandb: [wandb.login()] Using explicit session credentials for https://api.wandb.ai.
+wandb: Appending key for api.wandb.ai to your netrc file: /home/ysunem/.netrc
+wandb: Currently logged in as: ysunem (ysunem-hong-kong-university-of-science-and-technology) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run wfkoudsl
+wandb: Tracking run with wandb version 0.25.0
+wandb: Run data is saved locally in /scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_182859-wfkoudsl
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run mild-microwave-10
+wandb: ⭐️ View project at https://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid
+wandb: 🚀 View run at https://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid/runs/wfkoudsl
+run dir: /scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_182859-wfkoudsl/files
+Loading pretrained generator from /scratch/peilab/ysunem/26.2/2.27_CausVid/data/ckpt_ode_pretraining/wan_causal_ode_checkpoint_model_003000/model.pt
+/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:479: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.HYBRID_SHARD since the world size is 1.
+  _init_core_state(
+ cache a block wise causal mask with block size of 3 frames
+BlockMask(shape=(1, 1, 32768, 32768), sparsity=42.52%, 
+(0, 0)
+████░░                                  
+████░░                                  
+████░░░░░░░░                            
+██████████░░                            
+██████████░░                            
+██████████░░░░░░░░                      
+████████████████░░                      
+████████████████░░                      
+████████████████░░░░░░░░                
+██████████████████████░░                
+██████████████████████░░                
+██████████████████████░░░░░░░░          
+████████████████████████████░░          
+████████████████████████████░░          
+████████████████████████████████░░      
+████████████████████████████████░░      
+████████████████████████████████░░░░░░░░
+████████████████████████████████████████
+████████████████████████████████████████
+████████████████████████████████████████
+)
+/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/attention/flex_attention.py:1624: UserWarning: flex_attention called without torch.compile() - this will use an unfused implementation that materializes the full scores matrix instead of generating a fused kernel.
+
+SOLUTION: Use torch.compile(flex_attention)(...)
+
+If you want to debug your score_mod/mask_mod, you can set:
+torch.nn.attention.flex_attention._FLEX_ATTENTION_DISABLE_COMPILE_DEBUG = True
+
+This will allow you to use print statements or breakpoints. Note: This doesn't work with the backwards pass and may produce incorrect results.
+  _warn_once(
+Traceback (most recent call last):
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 348, in <module>
+    main()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 342, in main
+    trainer.train()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 301, in train
+    self.train_one_step()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 218, in train_one_step
+    generator_loss, generator_log_dict = self.distillation_model.generator_loss(
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/dmd.py", line 387, in generator_loss
+    pred_image, gradient_mask = self._run_generator(
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/dmd.py", line 355, in _run_generator
+    pred_image_or_video = self.generator(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 858, in forward
+    output = self._fsdp_wrapped_module(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/wan_wrapper.py", line 190, in forward
+    flow_pred = self.model(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 858, in forward
+    output = self._fsdp_wrapped_module(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 698, in forward
+    return self._forward_train(*args, **kwargs)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 675, in _forward_train
+    x = torch.utils.checkpoint.checkpoint(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/utils/checkpoint.py", line 512, in checkpoint
+    ret = function(*args, **kwargs)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 670, in custom_forward
+    return module(*inputs, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 222, in forward
+    y = self.self_attn(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 129, in forward
+    x = flex_attention(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/attention/flex_attention.py", line 1665, in flex_attention
+    out, lse, max_scores = flex_fn(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 953, in compile_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/attention/flex_attention.py", line 1644, in _flex_attention_hop_wrapper
+    def _flex_attention_hop_wrapper(*args, **kwargs):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+  File "<eval_with_key>.5", line 19, in forward
+    flex_attention = torch.ops.higher_order.flex_attention(l_args_0_, l_args_1_, l_args_2_, score_mod_0, (32768, 32768, l_args_4_2_, l_args_4_3_, l_args_4_4_, l_args_4_5_, l_args_4_6_, l_args_4_7_, l_args_4_8_, l_args_4_9_, 128, 128, mask_fn_0), 0.08838834764831843, {'BACKEND': 'AUTO', 'PRESCALE_QK': False, 'ROWS_GUARANTEED_SAFE': False, 'BLOCKS_ARE_CONTIGUOUS': False, 'WRITE_DQ': True, 'OUTPUT_LOGSUMEXP': True, 'OUTPUT_MAX': False}, (), (l_args_4_12_closure_0_cell_contents,));  l_args_0_ = l_args_1_ = l_args_2_ = score_mod_0 = l_args_4_2_ = l_args_4_3_ = l_args_4_4_ = l_args_4_5_ = l_args_4_6_ = l_args_4_7_ = l_args_4_8_ = l_args_4_9_ = mask_fn_0 = l_args_4_12_closure_0_cell_contents = None
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 97, in __call__
+    return super().__call__(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 510, in __call__
+    return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 360, in dispatch
+    return kernel(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 807, in flex_attention_autograd
+    out, logsumexp, max_scores = FlexAttentionAutogradOp.apply(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/function.py", line 583, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 659, in forward
+    out, logsumexp, max_scores = flex_attention(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 97, in __call__
+    return super().__call__(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 505, in __call__
+    return torch.overrides.handle_torch_function(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/overrides.py", line 1740, in handle_torch_function
+    result = mode.__torch_function__(public_api, types, args, kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/_trace_wrapped_higher_order_op.py", line 147, in __torch_function__
+    return func(*args, **(kwargs or {}))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 97, in __call__
+    return super().__call__(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 510, in __call__
+    return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 499, in dispatch
+    return kernel(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 282, in sdpa_dense
+    out, lse, max_scores = math_attention(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 238, in math_attention
+    _, post_mod_scores = _math_attention_inner(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 174, in _math_attention_inner
+    scores = query.to(working_precision) @ key.to(working_precision).transpose(-2, -1)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 48.00 GiB. GPU 0 has a total capacity of 79.19 GiB of which 35.76 GiB is free. Including non-PyTorch memory, this process has 43.42 GiB memory in use. Of the allocated memory 41.49 GiB is allocated by PyTorch, and 733.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 348, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 342, in main
+[rank0]:     trainer.train()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 301, in train
+[rank0]:     self.train_one_step()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 218, in train_one_step
+[rank0]:     generator_loss, generator_log_dict = self.distillation_model.generator_loss(
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/dmd.py", line 387, in generator_loss
+[rank0]:     pred_image, gradient_mask = self._run_generator(
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/dmd.py", line 355, in _run_generator
+[rank0]:     pred_image_or_video = self.generator(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 858, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/wan_wrapper.py", line 190, in forward
+[rank0]:     flow_pred = self.model(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 858, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 698, in forward
+[rank0]:     return self._forward_train(*args, **kwargs)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 675, in _forward_train
+[rank0]:     x = torch.utils.checkpoint.checkpoint(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_compile.py", line 54, in inner
+[rank0]:     return disable_fn(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/utils/checkpoint.py", line 512, in checkpoint
+[rank0]:     ret = function(*args, **kwargs)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 670, in custom_forward
+[rank0]:     return module(*inputs, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 222, in forward
+[rank0]:     y = self.self_attn(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/causal_model.py", line 129, in forward
+[rank0]:     x = flex_attention(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/attention/flex_attention.py", line 1665, in flex_attention
+[rank0]:     out, lse, max_scores = flex_fn(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 953, in compile_wrapper
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/nn/attention/flex_attention.py", line 1644, in _flex_attention_hop_wrapper
+[rank0]:     def _flex_attention_hop_wrapper(*args, **kwargs):
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "<eval_with_key>.5", line 19, in forward
+[rank0]:     flex_attention = torch.ops.higher_order.flex_attention(l_args_0_, l_args_1_, l_args_2_, score_mod_0, (32768, 32768, l_args_4_2_, l_args_4_3_, l_args_4_4_, l_args_4_5_, l_args_4_6_, l_args_4_7_, l_args_4_8_, l_args_4_9_, 128, 128, mask_fn_0), 0.08838834764831843, {'BACKEND': 'AUTO', 'PRESCALE_QK': False, 'ROWS_GUARANTEED_SAFE': False, 'BLOCKS_ARE_CONTIGUOUS': False, 'WRITE_DQ': True, 'OUTPUT_LOGSUMEXP': True, 'OUTPUT_MAX': False}, (), (l_args_4_12_closure_0_cell_contents,));  l_args_0_ = l_args_1_ = l_args_2_ = score_mod_0 = l_args_4_2_ = l_args_4_3_ = l_args_4_4_ = l_args_4_5_ = l_args_4_6_ = l_args_4_7_ = l_args_4_8_ = l_args_4_9_ = mask_fn_0 = l_args_4_12_closure_0_cell_contents = None
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 97, in __call__
+[rank0]:     return super().__call__(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 510, in __call__
+[rank0]:     return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 360, in dispatch
+[rank0]:     return kernel(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 807, in flex_attention_autograd
+[rank0]:     out, logsumexp, max_scores = FlexAttentionAutogradOp.apply(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/autograd/function.py", line 583, in apply
+[rank0]:     return super().apply(*args, **kwargs)  # type: ignore[misc]
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 659, in forward
+[rank0]:     out, logsumexp, max_scores = flex_attention(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 97, in __call__
+[rank0]:     return super().__call__(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 505, in __call__
+[rank0]:     return torch.overrides.handle_torch_function(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/overrides.py", line 1740, in handle_torch_function
+[rank0]:     result = mode.__torch_function__(public_api, types, args, kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_dynamo/_trace_wrapped_higher_order_op.py", line 147, in __torch_function__
+[rank0]:     return func(*args, **(kwargs or {}))
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 97, in __call__
+[rank0]:     return super().__call__(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 510, in __call__
+[rank0]:     return self.dispatch(dispatch_key_set.highestPriorityTypeId(), *args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_ops.py", line 499, in dispatch
+[rank0]:     return kernel(*args, **kwargs)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 282, in sdpa_dense
+[rank0]:     out, lse, max_scores = math_attention(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 238, in math_attention
+[rank0]:     _, post_mod_scores = _math_attention_inner(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/_higher_order_ops/flex_attention.py", line 174, in _math_attention_inner
+[rank0]:     scores = query.to(working_precision) @ key.to(working_precision).transpose(-2, -1)
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 48.00 GiB. GPU 0 has a total capacity of 79.19 GiB of which 35.76 GiB is free. Including non-PyTorch memory, this process has 43.42 GiB memory in use. Of the allocated memory 41.49 GiB is allocated by PyTorch, and 733.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mmild-microwave-10[0m at: [34mhttps://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid/runs/wfkoudsl[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_182859-wfkoudsl/logs[0m
+[rank0]:[W228 18:29:56.556796480 ProcessGroupNCCL.cpp:1553] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0228 18:29:57.514000 3708821 site-packages/torch/distributed/elastic/multiprocessing/api.py:984] failed (exitcode: 1) local_rank: 0 (pid: 3708979) of binary: /home/ysunem/miniconda3/envs/causvid/bin/python
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+causvid/train_distillation.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-28_18:29:57
+  host      : dgx-43.cm.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3708979)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
