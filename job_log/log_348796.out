@@ -1,0 +1,72 @@
+wandb: [wandb.login()] Using explicit session credentials for https://api.wandb.ai.
+wandb: Appending key for api.wandb.ai to your netrc file: /home/ysunem/.netrc
+wandb: Currently logged in as: ysunem (ysunem-hong-kong-university-of-science-and-technology) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run 2698stk4
+wandb: Tracking run with wandb version 0.25.0
+wandb: Run data is saved locally in /scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_174932-2698stk4
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run divine-hill-6
+wandb: ⭐️ View project at https://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid
+wandb: 🚀 View run at https://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid/runs/2698stk4
+run dir: /scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_174932-2698stk4/files
+Loading pretrained generator from /scratch/peilab/ysunem/26.2/2.27_CausVid/data/ckpt_ode_pretraining/wan_causal_ode_checkpoint_model_003000/model.pt
+/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:479: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.HYBRID_SHARD since the world size is 1.
+  _init_core_state(
+Traceback (most recent call last):
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 348, in <module>
+    main()
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 341, in main
+    trainer = Trainer(config)
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 116, in __init__
+    dataset = ODERegressionLMDBDataset(
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/data.py", line 44, in __init__
+    self.env = lmdb.open(data_path, readonly=True,
+lmdb.Error: /scratch/peilab/ysunem/26.2/2.27_CausVid/data/mixkit_latents_lmdb: No such file or directory
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 348, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 341, in main
+[rank0]:     trainer = Trainer(config)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 116, in __init__
+[rank0]:     dataset = ODERegressionLMDBDataset(
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/data.py", line 44, in __init__
+[rank0]:     self.env = lmdb.open(data_path, readonly=True,
+[rank0]: lmdb.Error: /scratch/peilab/ysunem/26.2/2.27_CausVid/data/mixkit_latents_lmdb: No such file or directory
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mdivine-hill-6[0m at: [34mhttps://wandb.ai/ysunem-hong-kong-university-of-science-and-technology/2026.2.26_CausVid/runs/2698stk4[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../../../../scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/wandb/run-20260228_174932-2698stk4/logs[0m
+[rank0]:[W228 17:50:46.671204159 ProcessGroupNCCL.cpp:1553] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0228 17:50:47.349000 3639419 site-packages/torch/distributed/elastic/multiprocessing/api.py:984] failed (exitcode: 1) local_rank: 0 (pid: 3639521) of binary: /home/ysunem/miniconda3/envs/causvid/bin/python
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+causvid/train_distillation.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-28_17:50:47
+  host      : dgx-43.cm.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3639521)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

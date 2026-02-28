@@ -16,6 +16,7 @@ conda activate causvid
 
 cd /home/ysunem/26.2/2.27_CausVid/code
 export PYTHONPATH=$PYTHONPATH:.
+TORCH_INDUCTOR_DISABLE_CUDA_GRAPH=1
 python -m torch.distributed.run --nproc_per_node=1 --nnodes=1 \
   --master_port=29574 \
   causvid/train_distillation.py \
