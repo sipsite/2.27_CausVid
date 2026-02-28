@@ -407,9 +407,6 @@ class CausalWanModel(ModelMixin, ConfigMixin):
 
         self.num_frame_per_block = 1
 
-    def _set_gradient_checkpointing(self, module, value=False):
-        self.gradient_checkpointing = value
-
     @staticmethod
     def _prepare_blockwise_causal_attn_mask(
         device: torch.device | str, num_frames: int = 21,
