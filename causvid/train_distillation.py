@@ -6,7 +6,7 @@ from causvid.util import (
     prepare_for_saving,
     set_seed, init_logging_folder,
     fsdp_wrap, cycle,
-    fsdp_state_dict,
+    fsdp_state_dict, fsdp_load_state_dict,
     barrier
 )
 import torch.distributed as dist
@@ -17,6 +17,7 @@ import torch
 import wandb
 import time
 import os
+from datetime import datetime
 
 
 class Trainer:
@@ -124,6 +125,9 @@ class Trainer:
         self.max_grad_norm = 10.0
         self.previous_time = None
 
+        if getattr(config, "resume_path", None):
+            self.load_checkpoint(config.resume_path)
+
     def save(self):
         print("Start gathering distributed model states...")
         generator_state_dict = fsdp_state_dict(
@@ -132,7 +136,12 @@ class Trainer:
             self.distillation_model.fake_score)
         state_dict = {
             "generator": generator_state_dict,
-            "critic": critic_state_dict
+            "critic": critic_state_dict,
+            "step": self.step,
+            "generator_optimizer": self.generator_optimizer.state_dict(),
+            "critic_optimizer": self.critic_optimizer.state_dict(),
+            "saved_at_iso": datetime.now().isoformat(),
+            "saved_at_ts": time.time(),
         }
 
         if self.is_main_process:
@@ -140,8 +149,32 @@ class Trainer:
                         f"checkpoint_model_{self.step:06d}"), exist_ok=True)
             torch.save(state_dict, os.path.join(self.output_path,
                        f"checkpoint_model_{self.step:06d}", "model.pt"))
-            print("Model saved to", os.path.join(self.output_path,
-                  f"checkpoint_model_{self.step:06d}", "model.pt"))
+            ckpt_path = os.path.join(self.output_path,
+                  f"checkpoint_model_{self.step:06d}", "model.pt")
+            print(f"Checkpoint saved at {datetime.now().isoformat()} -> {ckpt_path}")
+
+    def load_checkpoint(self, resume_path: str):
+        ckpt_path = os.path.join(resume_path, "model.pt")
+        print(f"Loading checkpoint from {ckpt_path}...")
+        checkpoint = torch.load(ckpt_path, map_location="cpu")
+
+        self.step = checkpoint.get("step", 0)
+
+        fsdp_load_state_dict(self.distillation_model.generator,
+                             checkpoint["generator"])
+        fsdp_load_state_dict(self.distillation_model.fake_score,
+                             checkpoint["critic"])
+
+        if "generator_optimizer" in checkpoint:
+            self.generator_optimizer.load_state_dict(
+                checkpoint["generator_optimizer"]
+            )
+        if "critic_optimizer" in checkpoint:
+            self.critic_optimizer.load_state_dict(
+                checkpoint["critic_optimizer"]
+            )
+
+        barrier()
 
     def train_one_step(self):
         self.distillation_model.eval()  # prevent any randomness (e.g. dropout)
@@ -273,6 +306,9 @@ class Trainer:
             barrier()
             if self.is_main_process:
                 current_time = time.time()
+                wandb.log({"wall_clock_ts": current_time}, step=self.step)
+                if self.step % self.config.log_iters == 0:
+                    wandb.log({"wall_clock_iso": datetime.now().isoformat()}, step=self.step)
                 if self.previous_time is None:
                     self.previous_time = current_time
                 else:
@@ -289,12 +325,18 @@ def main():
     parser.add_argument("--local_rank", type=int, default=-1)
     parser.add_argument("--no_save", action="store_true")
     parser.add_argument("--no_visualize", action="store_true")
+    parser.add_argument("--resume", type=str, default=None)
 
     args = parser.parse_args()
 
     config = OmegaConf.load(args.config_path)
     config.no_save = args.no_save
     config.no_visualize = args.no_visualize
+
+    if args.resume is not None:
+        config.resume_path = args.resume
+        config.resume_run_dir = True
+        config.output_path = os.path.dirname(args.resume)
 
     trainer = Trainer(config)
     trainer.train()

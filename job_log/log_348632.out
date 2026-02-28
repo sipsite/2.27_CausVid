@@ -1,0 +1,48 @@
+Traceback (most recent call last):
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 2, in <module>
+    from causvid.models import get_block_class
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/__init__.py", line 1, in <module>
+    from .wan.wan_wrapper import WanTextEncoder, WanVAEWrapper, WanDiffusionWrapper, CausalWanDiffusionWrapper
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/wan_wrapper.py", line 6, in <module>
+    from causvid.models.wan.wan_base.modules.tokenizers import HuggingfaceTokenizer
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/wan_base/__init__.py", line 1, in <module>
+    from . import configs, distributed, modules
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/wan_base/configs/__init__.py", line 2, in <module>
+    from .wan_t2v_14B import t2v_14B
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/models/wan/wan_base/configs/wan_t2v_14B.py", line 2, in <module>
+    from easydict import EasyDict
+ModuleNotFoundError: No module named 'easydict'
+E0228 03:42:02.961000 2021065 site-packages/torch/distributed/elastic/multiprocessing/api.py:984] failed (exitcode: 1) local_rank: 0 (pid: 2021250) of binary: /home/ysunem/miniconda3/envs/causvid/bin/python
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+causvid/train_distillation.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-28_03:42:02
+  host      : dgx-04.cm.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2021250)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

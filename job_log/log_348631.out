@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 1, in <module>
+    from causvid.data import ODERegressionLMDBDataset
+ModuleNotFoundError: No module named 'causvid'
+E0228 03:36:00.441000 1969496 site-packages/torch/distributed/elastic/multiprocessing/api.py:984] failed (exitcode: 1) local_rank: 0 (pid: 1970249) of binary: /home/ysunem/miniconda3/envs/causvid/bin/python
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+causvid/train_distillation.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-28_03:36:00
+  host      : dgx-04.cm.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1970249)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

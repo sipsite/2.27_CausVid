@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 308, in launch_agent
+    result = agent.run()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 134, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 731, in run
+    result = self._invoke_run(role)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 902, in _invoke_run
+    self._initialize_workers(self._worker_group)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 134, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 699, in _initialize_workers
+    self._rendezvous(worker_group)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 134, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 514, in _rendezvous
+    rdzv_info = spec.rdzv_handler.next_rendezvous()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 67, in next_rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use

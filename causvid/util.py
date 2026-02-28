@@ -56,14 +56,18 @@ def set_seed(seed: int, deterministic: bool = False):
 
 
 def init_logging_folder(args):
-    date = str(datetime.now()).replace(" ", "-").replace(":", "-")
-    output_path = os.path.join(
-        args.output_path,
-        f"{date}_seed{args.seed}"
-    )
-    os.makedirs(output_path, exist_ok=False)
-
-    os.makedirs(args.output_path, exist_ok=True)
+    # When resuming, reuse an existing run directory instead of creating a new one.
+    if getattr(args, "resume_run_dir", False):
+        output_path = args.output_path
+        os.makedirs(output_path, exist_ok=True)
+    else:
+        date = str(datetime.now()).replace(" ", "-").replace(":", "-")
+        output_path = os.path.join(
+            args.output_path,
+            f"{date}_seed{args.seed}"
+        )
+        os.makedirs(output_path, exist_ok=False)
+        os.makedirs(args.output_path, exist_ok=True)
     wandb.login(host=args.wandb_host, key=args.wandb_key)
     run = wandb.init(config=OmegaConf.to_container(args, resolve=True), dir=args.output_path, **
                      {"mode": "online", "entity": args.wandb_entity, "project": args.wandb_project})
@@ -137,6 +141,16 @@ def fsdp_state_dict(model):
         checkpoint = model.state_dict()
 
     return checkpoint
+
+
+def fsdp_load_state_dict(model, state_dict):
+    fsdp_fullstate_load_policy = FullStateDictConfig(
+        offload_to_cpu=True, rank0_only=False
+    )
+    with FSDP.state_dict_type(
+        model, StateDictType.FULL_STATE_DICT, fsdp_fullstate_load_policy
+    ):
+        model.load_state_dict(state_dict)
 
 
 def barrier():

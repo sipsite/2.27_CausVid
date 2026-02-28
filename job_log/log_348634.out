@@ -1,0 +1,91 @@
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 341, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 334, in main
+[rank0]:     trainer = Trainer(config)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/train_distillation.py", line 46, in __init__
+[rank0]:     self.output_path, self.wandb_folder = init_logging_folder(config)
+[rank0]:   File "/home/ysunem/26.2/2.27_CausVid/code/causvid/util.py", line 71, in init_logging_folder
+[rank0]:     wandb.login(host=args.wandb_host, key=args.wandb_key)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/dictconfig.py", line 359, in __getattr__
+[rank0]:     self._format_and_raise(key=key, value=None, cause=e)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/base.py", line 231, in _format_and_raise
+[rank0]:     format_and_raise(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/_utils.py", line 899, in format_and_raise
+[rank0]:     _raise(ex, cause)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/_utils.py", line 797, in _raise
+[rank0]:     raise ex.with_traceback(sys.exc_info()[2])  # set env var OC_CAUSE=1 for full trace
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/dictconfig.py", line 351, in __getattr__
+[rank0]:     return self._get_impl(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/dictconfig.py", line 451, in _get_impl
+[rank0]:     return self._resolve_with_default(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/basecontainer.py", line 98, in _resolve_with_default
+[rank0]:     resolved_node = self._maybe_resolve_interpolation(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/base.py", line 719, in _maybe_resolve_interpolation
+[rank0]:     return self._resolve_interpolation_from_parse_tree(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/base.py", line 584, in _resolve_interpolation_from_parse_tree
+[rank0]:     resolved = self.resolve_parse_tree(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/base.py", line 764, in resolve_parse_tree
+[rank0]:     return visitor.visit(parse_tree)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/antlr4/tree/Tree.py", line 34, in visit
+[rank0]:     return tree.accept(self)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 206, in accept
+[rank0]:     return visitor.visitConfigValue(self)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar_visitor.py", line 101, in visitConfigValue
+[rank0]:     return self.visit(ctx.getChild(0))
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/antlr4/tree/Tree.py", line 34, in visit
+[rank0]:     return tree.accept(self)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 342, in accept
+[rank0]:     return visitor.visitText(self)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar_visitor.py", line 298, in visitText
+[rank0]:     return self.visitInterpolation(c)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar_visitor.py", line 125, in visitInterpolation
+[rank0]:     return self.visit(ctx.getChild(0))
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/antlr4/tree/Tree.py", line 34, in visit
+[rank0]:     return tree.accept(self)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 1041, in accept
+[rank0]:     return visitor.visitInterpolationResolver(self)
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/grammar_visitor.py", line 179, in visitInterpolationResolver
+[rank0]:     return self.resolver_interpolation_callback(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/base.py", line 750, in resolver_interpolation_callback
+[rank0]:     return self._evaluate_custom_resolver(
+[rank0]:   File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/omegaconf/base.py", line 702, in _evaluate_custom_resolver
+[rank0]:     raise UnsupportedInterpolationType(
+[rank0]: omegaconf.errors.UnsupportedInterpolationType: Unsupported interpolation type env
+[rank0]:     full_key: wandb_key
+[rank0]:     object_type=dict
+[rank0]:[W228 03:56:48.827198946 ProcessGroupNCCL.cpp:1553] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0228 03:56:49.865000 2075003 site-packages/torch/distributed/elastic/multiprocessing/api.py:984] failed (exitcode: 1) local_rank: 0 (pid: 2075027) of binary: /home/ysunem/miniconda3/envs/causvid/bin/python
+Traceback (most recent call last):
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 995, in <module>
+    main()
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 991, in main
+    run(args)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/run.py", line 982, in run
+    elastic_launch(
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+causvid/train_distillation.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-02-28_03:56:49
+  host      : dgx-04.cm.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2075027)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
