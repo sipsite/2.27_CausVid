@@ -1,0 +1,5 @@
+DEBUG: Checking path on compute node: /scratch/peilab/ysunem/26.2/2.27_CausVid/data/all_mixkit/all_mixkit_videos
+ls: cannot access '/scratch/peilab/ysunem/26.2/2.27_CausVid/data/all_mixkit/all_mixkit_videos': No such file or directory
+DEBUG: Path exists? NO
+DEBUG: PWD=/home/ysunem/26.2/2.27_CausVid/code
+DEBUG: Python Script completed

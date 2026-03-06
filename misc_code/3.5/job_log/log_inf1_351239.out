@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/ysunem/ys_26.2/2.27_CausVid/code/misc_code/3.5/3.5_count_para_and_flop.py", line 130, in <module>
+    main()
+  File "/home/ysunem/ys_26.2/2.27_CausVid/code/misc_code/3.5/3.5_count_para_and_flop.py", line 29, in main
+    from causvid.models.wan.wan_base.modules.model import WanModel
+ModuleNotFoundError: No module named 'causvid'

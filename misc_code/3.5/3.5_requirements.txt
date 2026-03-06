@@ -1,0 +1,6 @@
+# For 3.5_count_para_and_flop.py (param count + FLOPs).
+# Install: pip install -r 3.5_requirements.txt
+# Assumes torch, diffusers, and project deps are already installed.
+
+easydict
+fvcore

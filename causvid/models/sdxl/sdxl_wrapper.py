@@ -152,7 +152,15 @@ class SDXLWrapper(DiffusionModelInterface):
         super().post_init()
 
     def enable_gradient_checkpointing(self) -> None:
-        self.model.enable_gradient_checkpointing()
+        def _gradient_checkpointing_func(module, *args):
+            return torch.utils.checkpoint.checkpoint(
+                module.__call__,
+                *args,
+                use_reentrant=False,
+            )
+        self.model.enable_gradient_checkpointing(
+            gradient_checkpointing_func=_gradient_checkpointing_func,
+        )
 
     def forward(
         self, noisy_image_or_video: torch.Tensor, conditional_dict: dict,

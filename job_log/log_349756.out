@@ -1,0 +1,11 @@
+KV inference with 3 frames per block
+Traceback (most recent call last):
+  File "/home/ysunem/26.2/2.27_CausVid/code/minimal_inference/autoregressive_inference.py", line 25, in <module>
+    state_dict = torch.load(os.path.join(args.checkpoint_folder, "model.pt"), map_location="cpu")[
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/serialization.py", line 1500, in load
+    with _open_file_like(f, "rb") as opened_file:
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/serialization.py", line 768, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/torch/serialization.py", line 749, in __init__
+    super().__init__(open(name, mode))  # noqa: SIM115
+NotADirectoryError: [Errno 20] Not a directory: '/scratch/peilab/ysunem/26.2/2.27_CausVid/result/wan_causal_dmd/2026-03-02-14-15-36.798693_seed2207405/checkpoint_model_001600/model.pt/model.pt'

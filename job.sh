@@ -4,8 +4,8 @@
 #SBATCH --job-name=wan_dmd
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=8
+#SBATCH --gres=gpu:2
+#SBATCH --cpus-per-task=16
 #SBATCH --time=30:00:00
 #SBATCH --output=job_log/log_%j.out
 
@@ -17,7 +17,9 @@ conda activate causvid
 cd /home/ysunem/26.2/2.27_CausVid/code
 export PYTHONPATH=$PYTHONPATH:.
 TORCH_INDUCTOR_DISABLE_CUDA_GRAPH=1
-python -m torch.distributed.run --nproc_per_node=1 --nnodes=1 \
+python -m torch.distributed.run --nproc_per_node=2 --nnodes=1 \
   --master_port=29574 \
   causvid/train_distillation.py \
-  --config_path configs/wan_causal_dmd.yaml 
+  --config_path configs/wan_causal_dmd.yaml \
+  2>&1 | tee -a job_log/train_$(date +%Y%m%d_%H%M%S).out 
+

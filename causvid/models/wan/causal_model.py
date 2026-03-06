@@ -15,14 +15,18 @@ from torch.nn.attention.flex_attention import BlockMask
 from diffusers.models.modeling_utils import ModelMixin
 import torch.nn as nn
 import torch
+torch._inductor.config.triton.cudagraphs = False
+torch._inductor.config.triton.cudagraph_trees = False
 import math
 
 # wan 1.3B model has a weird channel / head configurations and require max-autotune to work with flexattention
 # see https://github.com/pytorch/pytorch/issues/133254
 # change to default for other models
 flex_attention = torch.compile(
-    flex_attention, dynamic=False, mode="max-autotune")
-
+    flex_attention,
+    dynamic=False,
+    mode="max-autotune"
+)
 
 def causal_rope_apply(x, grid_sizes, freqs, start_frame=0):
     n, c = x.size(2), x.size(3) // 2

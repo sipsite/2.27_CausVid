@@ -1,0 +1,41 @@
+/home/ysunem/miniconda3/envs/causvid/lib/python3.10/site-packages/transformers/utils/generic.py:311: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+Unsupported operator aten::sub encountered 61 time(s)
+Unsupported operator aten::div encountered 1 time(s)
+Unsupported operator aten::neg encountered 1 time(s)
+Unsupported operator aten::pow encountered 121 time(s)
+Unsupported operator aten::outer encountered 1 time(s)
+Unsupported operator aten::cos encountered 1 time(s)
+Unsupported operator aten::sin encountered 1 time(s)
+Unsupported operator aten::silu encountered 2 time(s)
+Unsupported operator aten::unflatten encountered 61 time(s)
+Unsupported operator aten::rsub encountered 1 time(s)
+Unsupported operator aten::gelu encountered 31 time(s)
+Unsupported operator aten::add encountered 363 time(s)
+Unsupported operator aten::mul encountered 481 time(s)
+Unsupported operator aten::mean encountered 120 time(s)
+Unsupported operator aten::rsqrt encountered 120 time(s)
+Unsupported operator aten::view_as_complex encountered 60 time(s)
+Unsupported operator aten::view_as_real encountered 60 time(s)
+Unsupported operator aten::cumsum encountered 120 time(s)
+Unsupported operator prim::PythonOp.FlashAttnVarlenFunc encountered 60 time(s)
+Loading original model (WanModel) from: /home/ysunem/ys_26.2/2.27_CausVid/code/wan_models/Wan2.1-T2V-1.3B
+Loading distilled model (CausalWanModel) from: /home/ysunem/ys_26.2/2.27_CausVid/code/wan_models/Wan2.1-T2V-1.3B
+
+============================================================
+PARAMETERS (diffusion backbone only)
+============================================================
+  Original (WanModel):             1,418,996,800  (1.4190 B)
+  Distilled (CausalWanModel):     1,418,996,800  (1.4190 B)
+  Same architecture:            True
+
+============================================================
+FLOPs (one forward pass, training mode)
+============================================================
+  Original (WanModel):           41,067,176,009,652.0  (41.0672 TFLOPs)
+FLOPs (fvcore):
+  FlopCountAnalysis failed (custom ops like flex_attention/flash_attention may be uncounted):
+  RuntimeError: unordered_map::at
+  Install: pip install fvcore
+
+Done.

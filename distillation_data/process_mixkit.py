@@ -3,6 +3,7 @@
 
 import argparse
 import logging
+import os
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -28,14 +29,15 @@ def is_16_9_ratio(width: int, height: int, tolerance: float = 0.1) -> bool:
 def resize_video(args_tuple):
     """
     Resize a single video file.
-    args_tuple: (input_file, output_dir, width, height, fps)
+    args_tuple: (input_file, output_file, width, height, fps, resume)
     """
-    input_file, output_dir, width, height, fps = args_tuple
+    input_file, output_file, width, height, fps, resume = args_tuple
     video = None
     resized = None
-    output_file = output_dir / f"{input_file.name}"
 
     if output_file.exists():
+        if resume:
+            return (input_file.name, "skipped", "Already exists")
         output_file.unlink()
 
     video = VideoFileClip(str(input_file))
@@ -77,8 +79,12 @@ def process_folder(args):
     output_path.mkdir(parents=True, exist_ok=True)
 
     video_extensions = {'.mp4', '.avi', '.mov', '.mkv', '.webm'}
-    video_files = [f for f in input_path.iterdir() if f.is_file()
-                   and f.suffix.lower() in video_extensions]
+    video_files = []
+    input_path_str = input_path.resolve()
+    for root, _dirs, files in os.walk(input_path_str):
+        for name in files:
+            if Path(name).suffix.lower() in video_extensions:
+                video_files.append(Path(root) / name)
 
     if not video_files:
         print(f"No video files found in {args.input_dir}")
@@ -87,18 +93,34 @@ def process_folder(args):
     print(f"Found {len(video_files)} videos")
     print(f"Target: {args.width}x{args.height} at {args.fps}fps")
 
+    # Output to same level: use relative path with sep as "_" to avoid name collision
+    def output_name_for(in_file):
+        try:
+            rel = in_file.resolve().relative_to(Path(input_path_str))
+        except ValueError:
+            rel = in_file.name
+        return rel.as_posix().replace("/", "_")
+
     # Prepare arguments for parallel processing
-    process_args = [(video_file, output_path, args.width,
-                     args.height, args.fps) for video_file in video_files]
+    process_args = [
+        (video_file, output_path / output_name_for(video_file), args.width,
+         args.height, args.fps, getattr(args, "resume", False))
+        for video_file in video_files
+    ]
+
+    # When --resume: skip videos that already have output (don't submit to executor)
+    if getattr(args, "resume", False):
+        process_args = [t for t in process_args if not t[1].exists()]
+        already_done = len(video_files) - len(process_args)
+        if already_done:
+            print(f"Resume: skipping {already_done} already processed video(s)")
 
     successful = 0
     skipped = 0
     failed = []
 
-    resize_video(process_args[0])
-
-    with tqdm(total=len(video_files), desc="Converting videos", dynamic_ncols=True) as pbar:
-        with ThreadPoolExecutor() as executor:
+    with tqdm(total=len(process_args), desc="Converting videos", dynamic_ncols=True) as pbar:
+        with ThreadPoolExecutor(max_workers=12) as executor: #ys. ori: no max_workers
             # Submit all tasks
             future_to_file = {executor.submit(
                 resize_video, arg): arg[0] for arg in process_args}
@@ -136,6 +158,8 @@ def parse_args():
                         help='Target height in pixels (default: 480)')
     parser.add_argument('--fps', type=int, default=30,
                         help='Target frames per second (default: 30)')
+    parser.add_argument('--resume', action='store_true',
+                        help='Skip videos that already have output (resumable run)')
     parser.add_argument('--log-level',
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'],
                         default='INFO',
